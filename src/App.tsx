@@ -12,13 +12,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { depoiments } from "./utils/Depoimentos"
 import DepoimentCard from "./components/DepoimentCard"
-
 import dentistWoman from './assets/dentistWoman.jpg'
 import Form from "./components/Form"
 import { faqs } from "./utils/Faqs"
 import FaqCard from './components/faq'
 import FaqImage from './assets/faqImage.png'
 import { FiMenu } from 'react-icons/fi'
+import { useSpring, animated } from '@react-spring/web';
 
 
 
@@ -40,13 +40,22 @@ const Qualidadades = ({ quality }: { quality: string }) => {
     </div>
   )
 }
+function Number({ y }: { y: number }) {
+  const { number } = useSpring({
+    from: { number: 0 },
+    number: y,
+    delay: 200,
+    config: { mass: 1, tension: 20, friction: 10 },
+  });
+  return <animated.div>{number.to((y) => y.toFixed(0))}</animated.div>
+}
 
 function App() {
 
 
   return (
     <div className='flex flex-col w-full min-h-screen font-ibm'>
-      <div className="w-full flex flex-col ">
+      <div className="w-full flex flex-col bg-blue-300">
 
         <header className="w-full py-6 px-8 md:px-24 flex justify-between items-center lg:hidden ">
           <h1 className="text-gray-600 text-3xl font-black">andre <span className="text-blue-500">dentist</span></h1>
@@ -62,7 +71,7 @@ function App() {
           <h1 className="text-gray-600 text-3xl font-black">andre <span className="text-blue-500">dentist</span></h1>
 
           <div className="flex gap-4 justify-between">
-            <a href="#serviços" className="hover:text-blue-text hover:underline text-lg text-gray-600 font-semibold">Especialidades</a>
+            <a href="#especialidades" className="hover:text-blue-text hover:underline text-lg text-gray-600 font-semibold">Especialidades</a>
             <a href="#quem_somos" className="hover:text-blue-text hover:underline text-lg font-semibold text-gray-600">Quem somos</a>
             <a href="#contato" className="hover:text-blue-text hover:underline text-lg font-semibold text-gray-600">Contato</a>
           </div>
@@ -73,7 +82,7 @@ function App() {
           </div>
         </header>
 
-        <main className="flex pt-12 sm:pt-6 px-8 md:px-24 justify-center sm:justify-between   items-center flex-wrap">
+        <main className="flex pt-12 sm:pt-0 px-8 md:px-24 justify-center sm:justify-between  items-center flex-wrap">
           <div className="flex flex-col gap-10 lg:w-1/2 items-center sm:items-start">
             <div className="flex flex-col gap-6 ">
               <h1 className="text-6xl text-blue-text font-black text-center sm:text-left leading-tight">Seu
@@ -91,30 +100,26 @@ function App() {
 
         </main>
 
-        <div className="bg-blue-600 ">
-          {/* <svg className='absolute h-[650px] -top-full -translate-y-1/3 right-16' id="sw-js-blob-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">
-            <defs>
-              <linearGradient id="sw-gradient" x1="0" x2="1" y1="1" y2="0">
-                <stop id="stop1" stop-color="rgba(225, 238, 255, 1)" offset="0%"></stop>
-                <stop id="stop2" stop-color="rgba(172, 209, 254, 1)" offset="100%"></stop>
-              </linearGradient>
-            </defs>
-            <path fill="url(#sw-gradient)" d="M30.1,-26.1C35.7,-17,34.6,-4.7,31.4,6.4C28.3,17.4,23,27.2,15.2,30.5C7.4,33.8,-2.9,30.7,-11.4,25.8C-20,20.9,-26.6,14.3,-28.6,6.4C-30.5,-1.5,-27.7,-10.7,-22.1,-19.8C-16.6,-28.9,-8.3,-38.1,2,-39.6C12.2,-41.2,24.5,-35.3,30.1,-26.1Z" width="100%" height="100%" transform="translate(50 50)" stroke-width="0" stroke="url(#sw-gradient)"></path>
-          </svg> */}
-
+        <div className="bg-blue-600">
           <div className="flex gap-10 items-center justify-center px-8 md:px-24 py-10 flex-wrap ">
             <div className="flex flex-col justify-center items-center ">
-              <h1 className="text-6xl text-white font-bold">10+</h1>
+              <h1 className="text-6xl text-white font-bold">
+                <Number y={10} />
+              </h1>
               <span className="text-xl text-white">anos no mercado</span>
             </div>
 
             <div className="flex flex-col justify-center items-center ">
-              <h1 className="text-6xl text-white font-bold">15</h1>
+              <h1 className="text-6xl text-white font-bold">
+                <Number y={5} />
+              </h1>
               <span className="text-xl text-white">premios no ramo</span>
             </div>
 
             <div className="flex flex-col justify-center items-center">
-              <h1 className="text-6xl text-white font-bold">1mil+</h1>
+              <h1 className="text-6xl text-white font-bold">
+                <Number y={2000} /> 
+              </h1>
               <span className="text-xl text-white">clientes satisfeitos</span>
             </div>
 
@@ -218,10 +223,10 @@ function App() {
           <div className='flex flex-col gap-4 max-w-sm'>
             <h2 className='text-xl font-bold'>andre dentist</h2>
             <span>
-              orem ipsum dolor sit amet consectetur, adipisicing elit. Culpa sed eius temporibus tenetur at architecto natus ipsum q
+              A clínica odontológica André Dentist oferece serviços de qualidade, com uma equipe especializada e atendimento personalizado.
             </span>
             <span>
-              orem ipsum dolor sit amet consectetur, adipisicing elit. Culpa sed eius temporibus tenetur at architecto natus ipsum q
+              Na André Dentist, prezamos pelo conforto e bem-estar dos pacientes, proporcionando tratamentos odontológicos modernos e eficientes.
             </span>
           </div>
           <div className='flex flex-col gap-4'>
@@ -249,7 +254,7 @@ function App() {
         <div className='w-full border-t my-12' />
         <span className='text-center'>Todos os direitos reservados por <span className='text-blue-300'> André v Lopes</span> &copy;</span>
       </footer>
-    </div>
+    </div >
 
   )
 }
