@@ -19,11 +19,8 @@ import FaqCard from './components/faq'
 import FaqImage from './assets/faqImage.png'
 import { FiMenu } from 'react-icons/fi'
 import { IoMdClose } from 'react-icons/io'
-import { useSpring, animated } from '@react-spring/web';
+import { useSpring, animated, useInView } from '@react-spring/web';
 import { useState } from 'react'
-
-
-
 
 const Qualidadades = ({ quality }: { quality: string }) => {
   return (
@@ -56,7 +53,56 @@ function App() {
 
   const [isOpen, setIsOpen] = useState(false)
 
+  const spring = useSpring({
+    from: {
+      x: -10,
+      opacity: 0,
+    },
+    to: {
+      x: 0,
+      opacity: 1,
+    },
+  })
 
+  const [ref1, springs1] = useInView(
+    () => ({
+      from: {
+        opacity: 0,
+        x: 20,
+      },
+      to: {
+        opacity: 1,
+        x: 0,
+      },
+    }),
+    {once: true}
+  )
+  const [ref2, spring2] = useInView(
+    () => ({
+      from: {
+        opacity: 0,
+        x: 20,
+      },
+      to: {
+        opacity: 1,
+        x: 0,
+      },
+    }),
+    {once: true}
+  )
+  const [ref3, springs3] = useInView(
+    () => ({
+      from: {
+        opacity: 0,
+        x: 20,
+      },
+      to: {
+        opacity: 1,
+        x: 0,
+      },
+    }),
+    {once: true}
+  )
 
   return (
     <div className='flex flex-col w-full min-h-screen font-ibm'>
@@ -114,7 +160,9 @@ function App() {
         </header>
 
         <main className="flex py-0  px-8 md:px-24 justify-center sm:justify-between items-center flex-wrap ">
-          <div className="flex flex-col gap-10 lg:w-1/2 items-center sm:items-start py-12">
+          <animated.div
+            style={spring}
+            className="flex flex-col gap-10 lg:w-1/2 items-center sm:items-start py-12">
             <div className="flex flex-col gap-6 ">
               <h1 className="text-6xl text-blue-text font-black text-center sm:text-left leading-tight">Seu
                 <span className="text-blue-500 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-blue-500 relative inline-block ml-3">
@@ -127,8 +175,8 @@ function App() {
             <button className="py-4 px-6 bg-blue-500 rounded-full shadow-md w-fit hover:shadow-xl transition hover:bg-blue-600 hover:shadow-blue-400">
               <h2 className="text-xl font-bold text-white">Agende sua consulta</h2>
             </button>
-          </div>
-          <img  alt='Doctor Image' src={Doctor} className="max-h-[500px]" />
+          </animated.div>
+          <img alt='Doctor Image' src={Doctor} className="max-h-[500px]" />
 
         </main>
 
@@ -170,7 +218,7 @@ function App() {
         <div className="flex items-center gap-10 my-12 flex-wrap-reverse">
           <img src={WhyChooseUsImage} className='sm:hover:scale-95 transition shadow-2xl sm:hover:shadow-none rounded-lg' alt="Dentists images" />
 
-          <div className="flex gap-2 flex-col lg:w-1/2">
+          <animated.div ref={ref1} style={springs1} className="flex gap-2 flex-col lg:w-1/2">
             <h1 className="text-4xl font-bold text-gray-700 mb-4">Porque escolher a gente ?</h1>
             <Qualidadades quality="Equipe especializada em diversas áreas para cuidar da sua saúde bucal." />
             <Qualidadades quality="Ambiente moderno e acolhedor para maior conforto durante os tratamentos." />
@@ -180,12 +228,12 @@ function App() {
             <Qualidadades quality="Prioridade máxima na segurança e higiene, seguindo rigorosos protocolos de biossegurança." />
             <div>
             </div>
-          </div>
+          </animated.div>
         </div>
       </section>
 
       <section className="bg-blue-300 flex px-8 md:px-24 py-24 gap-24 flex-wrap">
-        <div className="flex flex-col lg:w-1/3 gap-6">
+        <animated.div  ref={ref2} style={spring2} className="flex flex-col lg:w-1/3 gap-6">
           <h1 className="text-4xl font-bold text-gray-700">O que nossos <span className="text-blue-500"> clientes</span> dizem sobre nós?</h1>
           <h2 className="text-xl text-gray-700"><span className='text-blue-500'>Arraste</span> os depoimentos para ver alguns dos mais de 100 depoimentos que recebemos.</h2>
 
@@ -201,7 +249,7 @@ function App() {
 
             <h3 className="text-gray-700">+ 100 avaliações</h3>
           </div>
-        </div>
+        </animated.div>
 
         <Swiper className="lg:w-1/2 cursor-grab active:scale-105 transition">
           {depoiments.map((depo) => {
@@ -215,7 +263,7 @@ function App() {
 
       </section>
       <section className=" flex px-8 md:px-24 py-12 gap-6 justify-between flex-col sm:flex-row flex-wrap" id="quem_somos">
-        <div className="lg:w-1/3 gap-4 flex flex-col">
+        <animated.div  ref={ref3} style={springs3} className="lg:w-1/3 gap-4 flex flex-col">
           <h1 className="text-4xl font-bold text-gray-700 mb-4">O futuro do seu <span className="text-blue-500"> sorriso</span></h1>
           <h3 className='text-blue-text text-md font-thin'>
 
@@ -224,7 +272,7 @@ function App() {
           <h3 className='text-blue-text text-md font-thin'>
             A missão da clínica é promover a saúde bucal e o bem-estar dos pacientes, sempre com um atendimento personalizado e focado nas necessidades individuais. Ao longo dos anos, a clínica se tornou referência na região, conquistando a confiança e satisfação dos pacientes atendidos.
           </h3>
-        </div>
+        </animated.div>
         <img src={dentistWoman} className='sm:hover:scale-95 transition shadow-2xl sm:hover:shadow-none rounded-lg' />
       </section>
 
