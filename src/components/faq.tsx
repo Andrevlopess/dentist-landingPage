@@ -14,9 +14,9 @@ const FaqCard
         return (
             <button
                 onClick={() => setIsOpened(!isOpened)}
-                className='flex flex-col justify-between '>
-                <div className='flex w-full justify-between items-start sm:items-center transition gap-8 border-b-2 border-white p-2 '>
-                    <h1 className="text-lg sm:text-xl font-semibold text-gray-700 text-start">{faq.question}</h1>
+                className='flex flex-col justify-between border-b-2 border-white p-2'>
+                <div className='flex w-full justify-between items-start sm:items-center transition gap-8 '>
+                    <h1 className="text-lg sm:text-xl font-semibold text-gray-700 text-start hover:text-black">{faq.question}</h1>
                     {isOpened ? (
                         <BsChevronUp size={20} color='#021526' />
                     ) : (

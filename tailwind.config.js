@@ -15,7 +15,8 @@ export default {
           '600' : '#0360D9',
           'text' : '#021526'
         }
-      }
+      },
+   
     },
     fontFamily: {
       'ibm': ['IBM Plex Sans','sans-serif'],

@@ -18,7 +18,9 @@ import { faqs } from "./utils/Faqs"
 import FaqCard from './components/faq'
 import FaqImage from './assets/faqImage.png'
 import { FiMenu } from 'react-icons/fi'
+import { IoMdClose } from 'react-icons/io'
 import { useSpring, animated } from '@react-spring/web';
+import { useState } from 'react'
 
 
 
@@ -36,7 +38,7 @@ const Qualidadades = ({ quality }: { quality: string }) => {
           </clipPath>
         </defs>
       </svg>
-      <h2 className="text-lg ">{quality}</h2>
+      <h2 className="text-lg hover:text-blue-900 text-blue-text">{quality}</h2>
     </div>
   )
 }
@@ -52,18 +54,48 @@ function Number({ y }: { y: number }) {
 
 function App() {
 
+  const [isOpen, setIsOpen] = useState(false)
+
+
 
   return (
     <div className='flex flex-col w-full min-h-screen font-ibm'>
-      <div className="w-full flex flex-col bg-blue-300">
+      <div className="w-full flex flex-col bg-gradient-to-r from-cyan-100 to-blue-300">
 
         <header className="w-full py-6 px-8 md:px-24 flex justify-between items-center lg:hidden ">
           <h1 className="text-gray-600 text-3xl font-black">andre <span className="text-blue-500">dentist</span></h1>
 
 
-          <div className="flex justify-center items-center bg-blue-500 p-4 rounded-full">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex justify-center items-center bg-blue-500 p-4 rounded-full">
             <FiMenu color="#fff" size={25} />
-          </div>
+          </button>
+
+
+          <aside
+            className={`${isOpen ? 'flex' : 'hidden'} transition bg-blue-500 h-screen fixed w-full z-50 inset-y-0 right-0 p-6 flex-col gap-16`}>
+            <div className='flex justify-between items-center'>
+              <h1 className="text-white text-3xl font-black">andre <span className="text-blue-200">dentist</span></h1>
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <IoMdClose color="#fff" size={35} />
+              </button>
+            </div>
+
+            <ol
+              onClick={() => setIsOpen(!isOpen)}
+              className='flex  justify-center gap-6 flex-col'>
+              <li><a href="#especialidades" className='hover:underline hover:text-white text-blue-300 text-3xl font-semibold'>Especialidades</a></li>
+              <li><a href="#quem_somos" className='text-blue-300 text-3xl font-semibold hover:underline hover:text-white'>Quem somos</a></li>
+              <li><a href="#contato" className='text-blue-300 text-3xl font-semibold hover:underline hover:text-white'>Contato</a></li>
+
+            </ol>
+
+          </aside>
+
+
 
         </header>
 
@@ -76,14 +108,13 @@ function App() {
             <a href="#contato" className="hover:text-blue-text hover:underline text-lg font-semibold text-gray-600">Contato</a>
           </div>
 
-          <div className="flex justify-center items-center bg-blue-500 p-4 rounded-full">
+          <button className="py-4 px-6 bg-blue-500 rounded-full shadow-md w-fit hover:shadow-xl transition hover:bg-blue-600 hover:shadow-blue-400">
             <h2 className="font-semibold text-white">+55 11 95412 2342</h2>
-
-          </div>
+          </button>
         </header>
 
-        <main className="flex pt-12 sm:pt-0 px-8 md:px-24 justify-center sm:justify-between  items-center flex-wrap">
-          <div className="flex flex-col gap-10 lg:w-1/2 items-center sm:items-start">
+        <main className="flex py-0  px-8 md:px-24 justify-center sm:justify-between items-center flex-wrap ">
+          <div className="flex flex-col gap-10 lg:w-1/2 items-center sm:items-start py-12">
             <div className="flex flex-col gap-6 ">
               <h1 className="text-6xl text-blue-text font-black text-center sm:text-left leading-tight">Seu
                 <span className="text-blue-500 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-blue-500 relative inline-block ml-3">
@@ -92,41 +123,41 @@ function App() {
               <h3 className="text-xl text-blue-text font-semibold text-center sm:text-left">Tenha um sorriso saudável e radiante!<br /> Agende sua consulta hoje mesmo.</h3>
             </div>
 
-            <button className="py-4 px-6 bg-blue-500 rounded-full shadow-md w-fit hover:shadow-2xl transition hover:bg-blue-600">
+
+            <button className="py-4 px-6 bg-blue-500 rounded-full shadow-md w-fit hover:shadow-xl transition hover:bg-blue-600 hover:shadow-blue-400">
               <h2 className="text-xl font-bold text-white">Agende sua consulta</h2>
             </button>
           </div>
-          <img loading="lazy" src={Doctor} className="z-30 max-h-[600px]" />
+          <img  alt='Doctor Image' src={Doctor} className="max-h-[500px]" />
 
         </main>
 
-        <div className="bg-blue-600">
-          <div className="flex gap-10 items-center justify-center px-8 md:px-24 py-10 flex-wrap ">
-            <div className="flex flex-col justify-center items-center ">
-              <h1 className="text-6xl text-white font-bold">
-                <Number y={10} />
-              </h1>
-              <span className="text-xl text-white">anos no mercado</span>
-            </div>
 
-            <div className="flex flex-col justify-center items-center ">
-              <h1 className="text-6xl text-white font-bold">
-                <Number y={5} />
-              </h1>
-              <span className="text-xl text-white">premios no ramo</span>
-            </div>
-
-            <div className="flex flex-col justify-center items-center">
-              <h1 className="text-6xl text-white font-bold">
-                <Number y={2000} /> 
-              </h1>
-              <span className="text-xl text-white">clientes satisfeitos</span>
-            </div>
-
+        <div className="bg-blue-500 flex gap-10 items-center justify-center px-8 md:px-24 py-6 flex-wrap ">
+          <div className="flex flex-col justify-center items-center ">
+            <h1 className="text-6xl text-white font-bold flex">
+              <Number y={10} /> +
+            </h1>
+            <span className="text-xl text-white">anos no mercado</span>
           </div>
-        </div>
-      </div>
 
+          <div className="flex flex-col justify-center items-center ">
+            <h1 className="text-6xl text-white font-bold">
+              <Number y={5} />
+            </h1>
+            <span className="text-xl text-white">premios no ramo</span>
+          </div>
+
+          <div className="flex flex-col justify-center items-center">
+            <h1 className="text-6xl text-white font-bold flex">
+              <Number y={2000} /> +
+            </h1>
+            <span className="text-xl text-white">clientes satisfeitos</span>
+          </div>
+
+        </div>
+
+      </div>
       <section className="flex flex-col px-8 md:px-24 py-12 gap-6" id='especialidades'>
         <h1 className="text-4xl font-bold text-gray-700">Nossas especialidades</h1>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -137,7 +168,7 @@ function App() {
           })}
         </div>
         <div className="flex items-center gap-10 my-12 flex-wrap-reverse">
-          <img src={WhyChooseUsImage} />
+          <img src={WhyChooseUsImage} className='sm:hover:scale-95 transition shadow-2xl sm:hover:shadow-none rounded-lg' alt="Dentists images" />
 
           <div className="flex gap-2 flex-col lg:w-1/2">
             <h1 className="text-4xl font-bold text-gray-700 mb-4">Porque escolher a gente ?</h1>
@@ -158,47 +189,46 @@ function App() {
           <h1 className="text-4xl font-bold text-gray-700">O que nossos <span className="text-blue-500"> clientes</span> dizem sobre nós?</h1>
           <h2 className="text-xl text-gray-700"><span className='text-blue-500'>Arraste</span> os depoimentos para ver alguns dos mais de 100 depoimentos que recebemos.</h2>
 
-          <div className="flex gap-4 items-center mt-6">
-            <img className="z-0" src={person6} />
-            <img className="z-10 -ml-9" src={person1} />
-            <img className="z-20 -ml-9" src={person2} />
-            <img className="z-30 -ml-9" src={person3} />
-            <img className="z-40 -ml-9" src={person4} />
-            <img className="z-50 -ml-9" src={person5} />
+          <div className="flex gap-4 items-center mt-6 flex-wrap">
+
+            <img className="z-0 hover:scale-105 transition" src={person6} />
+            <img className="z-10 -ml-9 hover:scale-105 transition" src={person1} />
+            <img className="z-20 -ml-9 hover:scale-105 transition" src={person2} />
+            <img className="z-30 -ml-9 hover:scale-105 transition" src={person3} />
+            <img className="z-40 -ml-9 hover:scale-105 transition" src={person4} />
+            <img className="z-50 -ml-9 hover:scale-105 transition" src={person5} />
+
+
             <h3 className="text-gray-700">+ 100 avaliações</h3>
           </div>
         </div>
 
-        <Swiper className="lg:w-1/2 cursor-grab">
+        <Swiper className="lg:w-1/2 cursor-grab active:scale-105 transition">
           {depoiments.map((depo) => {
             return (
-              <SwiperSlide>
-                <DepoimentCard depoiment={depo} key={depo.id} />
+              <SwiperSlide key={depo.id} >
+                <DepoimentCard depoiment={depo} />
               </SwiperSlide>
             )
           })}
         </Swiper>
 
       </section>
-      <section className=" flex px-8 md:px-24 py-12 gap-6 justify-between flex-col sm:flex-row flex-wrap">
-        <div className="lg:w-1/3 gap-4 flex flex-col ">
+      <section className=" flex px-8 md:px-24 py-12 gap-6 justify-between flex-col sm:flex-row flex-wrap" id="quem_somos">
+        <div className="lg:w-1/3 gap-4 flex flex-col">
           <h1 className="text-4xl font-bold text-gray-700 mb-4">O futuro do seu <span className="text-blue-500"> sorriso</span></h1>
-          <h3>
+          <h3 className='text-blue-text text-md font-thin'>
 
-            A clínica odontológica foi fundada em 2008 por André Vitor Lopes, um renomado profissional da área. Desde então, a clínica tem se destacado pela excelência nos serviços oferecidos. Com uma equipe qualificada e equipamentos de última geração, a clínica busca proporcionar tratamentos odontológicos de alta qualidade.
+            A clínica odontológica foi fundada em 2008 por<span className='text-blue-600'> André Vitor Lopes</span> , um renomado profissional da área. Desde então, a clínica tem se destacado pela excelência nos serviços oferecidos. Com uma equipe qualificada e equipamentos de última geração, a clínica busca proporcionar tratamentos odontológicos de alta qualidade.
           </h3>
-          <h3>
+          <h3 className='text-blue-text text-md font-thin'>
             A missão da clínica é promover a saúde bucal e o bem-estar dos pacientes, sempre com um atendimento personalizado e focado nas necessidades individuais. Ao longo dos anos, a clínica se tornou referência na região, conquistando a confiança e satisfação dos pacientes atendidos.
           </h3>
         </div>
-        <img src={dentistWoman} className='' />
+        <img src={dentistWoman} className='sm:hover:scale-95 transition shadow-2xl sm:hover:shadow-none rounded-lg' />
       </section>
 
-      <section className="flex px-8 md:px-24 py-12 justify-center lg:justify-between flex-wrap gap-24" id='contact'>
-        <div className="flex flex-col gap-4">
-          <h1 className="text-4xl font-bold text-gray-700">Agende sua consulta</h1>
-          <h3>Entre em contato com a gente para agendar sua consulta </h3>
-        </div>
+      <section className="flex flex-col my-12 px-8 md:px-24 py-12 justify-center items-center" id='contato'>
         <Form />
       </section>
 
