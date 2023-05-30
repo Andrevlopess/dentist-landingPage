@@ -21,24 +21,10 @@ import { FiMenu } from 'react-icons/fi'
 import { IoMdClose } from 'react-icons/io'
 import { useSpring, animated, useInView } from '@react-spring/web';
 import { useState } from 'react'
+import { Qualitys } from './utils/Qualitys'
+import QualidadesCard from './components/QualidadesCard'
+import Footer from './components/Footer'
 
-const Qualidadades = ({ quality }: { quality: string }) => {
-  return (
-    <div className="flex items-center gap-4">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clipPath="url(#clip0_18_148)">
-          <path d="M14 0.5L4.7 10.7273L2 8.68225H0.5L4.7 15.5L15.5 0.5H14Z" fill="#0360D9" />
-        </g>
-        <defs>
-          <clipPath id="clip0_18_148">
-            <rect width="16" height="16" fill="white" />
-          </clipPath>
-        </defs>
-      </svg>
-      <h2 className="text-lg hover:text-blue-900 text-blue-text">{quality}</h2>
-    </div>
-  )
-}
 function Number({ y }: { y: number }) {
   const { number } = useSpring({
     from: { number: 0 },
@@ -75,7 +61,7 @@ function App() {
         x: 0,
       },
     }),
-    {once: true}
+    { once: true }
   )
   const [ref2, spring2] = useInView(
     () => ({
@@ -88,7 +74,7 @@ function App() {
         x: 0,
       },
     }),
-    {once: true}
+    { once: true }
   )
   const [ref3, springs3] = useInView(
     () => ({
@@ -101,7 +87,7 @@ function App() {
         x: 0,
       },
     }),
-    {once: true}
+    { once: true }
   )
 
   return (
@@ -220,20 +206,13 @@ function App() {
 
           <animated.div ref={ref1} style={springs1} className="flex gap-2 flex-col lg:w-1/2">
             <h1 className="text-4xl font-bold text-gray-700 mb-4">Porque escolher a gente ?</h1>
-            <Qualidadades quality="Equipe especializada em diversas áreas para cuidar da sua saúde bucal." />
-            <Qualidadades quality="Ambiente moderno e acolhedor para maior conforto durante os tratamentos." />
-            <Qualidadades quality="Tecnologia avançada para diagnósticos precisos e tratamentos eficientes." />
-            <Qualidadades quality="Profissionais atualizados para oferecer tratamentos de alta qualidade e confiança." />
-            <Qualidadades quality="Comunicação e relacionamento próximos com os pacientes, esclarecendo todas as dúvidas." />
-            <Qualidadades quality="Prioridade máxima na segurança e higiene, seguindo rigorosos protocolos de biossegurança." />
-            <div>
-            </div>
+            {Qualitys.map((quality) => { return <QualidadesCard quality={quality} key={quality} /> })}
           </animated.div>
         </div>
       </section>
 
       <section className="bg-blue-300 flex px-8 md:px-24 py-24 gap-24 flex-wrap">
-        <animated.div  ref={ref2} style={spring2} className="flex flex-col lg:w-1/3 gap-6">
+        <animated.div ref={ref2} style={spring2} className="flex flex-col lg:w-1/3 gap-6">
           <h1 className="text-4xl font-bold text-gray-700">O que nossos <span className="text-blue-500"> clientes</span> dizem sobre nós?</h1>
           <h2 className="text-xl text-gray-700"><span className='text-blue-500'>Arraste</span> os depoimentos para ver alguns dos mais de 100 depoimentos que recebemos.</h2>
 
@@ -245,7 +224,6 @@ function App() {
             <img className="z-30 -ml-9 hover:scale-105 transition" src={person3} />
             <img className="z-40 -ml-9 hover:scale-105 transition" src={person4} />
             <img className="z-50 -ml-9 hover:scale-105 transition" src={person5} />
-
 
             <h3 className="text-gray-700">+ 100 avaliações</h3>
           </div>
@@ -263,7 +241,7 @@ function App() {
 
       </section>
       <section className=" flex px-8 md:px-24 py-12 gap-6 justify-between flex-col sm:flex-row flex-wrap" id="quem_somos">
-        <animated.div  ref={ref3} style={springs3} className="lg:w-1/3 gap-4 flex flex-col">
+        <animated.div ref={ref3} style={springs3} className="lg:w-1/3 gap-4 flex flex-col">
           <h1 className="text-4xl font-bold text-gray-700 mb-4">O futuro do seu <span className="text-blue-500"> sorriso</span></h1>
           <h3 className='text-blue-text text-md font-thin'>
 
@@ -280,7 +258,7 @@ function App() {
         <Form />
       </section>
 
-      <section className="flex px-8 md:pl-24 py-12 mt-12 flex-wrap gap-12 justify-center lg:justify-start items-center bg-blue-300 relative">
+      <section className="flex px-8 md:pl-24 py-24 mt-12 flex-wrap gap-12 justify-center lg:justify-start items-center bg-blue-300 relative">
 
         <div className="flex flex-col gap-10 lg:w-3/5 z-10">
           <h1 className="text-4xl font-bold text-gray-700">Perguntas frequentes</h1>
@@ -296,42 +274,7 @@ function App() {
 
       </section>
 
-      <footer className="flex px-8 md:px-24 py-12 bg-blue-500 text-white flex-col">
-        <div className='w-full flex justify-between flex-wrap gap-6'>
-          <div className='flex flex-col gap-4 max-w-sm'>
-            <h2 className='text-xl font-bold'>andre dentist</h2>
-            <span>
-              A clínica odontológica André Dentist oferece serviços de qualidade, com uma equipe especializada e atendimento personalizado.
-            </span>
-            <span>
-              Na André Dentist, prezamos pelo conforto e bem-estar dos pacientes, proporcionando tratamentos odontológicos modernos e eficientes.
-            </span>
-          </div>
-          <div className='flex flex-col gap-4'>
-            <h2 className='text-lg font-bold'>Links</h2>
-            <ul>
-              <li><a href="#especialidades" className='hover:underline hover:text-white text-blue-300 text-md font-semibold'>Especialidades</a></li>
-              <li><a href="#quem_somos" className='text-blue-300 text-md font-semibold hover:underline hover:text-white'>Quem somos</a></li>
-              <li><a href="#contato" className='text-blue-300 text-md font-semibold hover:underline hover:text-white'>Contato</a></li>
-
-            </ul>
-            <div>
-              <h2 className='text-lg font-bold'>Horários</h2>
-              <ul>
-                <li>Seg a Sex: 7h30 ás 17h</li>
-                <li>Sábados: 8h30 ás 12h</li>
-              </ul>
-            </div>
-          </div>
-          <div className='flex flex-col gap-4'>
-            <h2 className='text-xl font-bold'>Endereço</h2>
-            <span>Av. Francisco Teodoro 123, Jundiaí SP</span>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14672.82848784347!2d-46.92107747469481!3d-23.162639474192954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1685379560521!5m2!1spt-BR!2sbr" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" className='rounded-sm  h-[180px] md:h-[200px] w-[250px] md:w-[400px]'></iframe>
-          </div>
-        </div>
-        <div className='w-full border-t my-12' />
-        <span className='text-center'>Todos os direitos reservados por <span className='text-blue-300'> André v Lopes</span> &copy;</span>
-      </footer>
+     <Footer/>
     </div >
 
   )
