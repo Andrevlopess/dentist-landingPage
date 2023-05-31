@@ -1,4 +1,4 @@
-import Doctor from './assets/doctor.png'
+import Doctor from './assets/doctor.webp'
 import { especialidades } from "./utils/especialidades"
 import EspecCard from "./components/EspecCard"
 import WhyChooseUsImage from './assets/whychooseus.png'
