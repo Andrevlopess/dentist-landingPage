@@ -1,7 +1,7 @@
-import Doctor from './assets/doctor.webp'
+import Doctor from './assets/doctor.png'
 import { especialidades } from "./utils/especialidades"
 import EspecCard from "./components/EspecCard"
-import WhyChooseUsImage from './assets/whychooseus.webp'
+import WhyChooseUsImage from './assets/whychooseus.png'
 import person1 from './assets/Dentista/person1.svg'
 import person2 from './assets/Dentista/person2.svg'
 import person3 from './assets/Dentista/person3.svg'
@@ -12,7 +12,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { depoiments } from "./utils/Depoimentos"
 import DepoimentCard from "./components/DepoimentCard"
-import dentistWoman from './assets/dentistWoman.webp'
+import dentistWoman from './assets/dentistWoman.jpg'
 import Form from "./components/Form"
 import { faqs } from "./utils/Faqs"
 import FaqCard from './components/faq'
@@ -253,7 +253,7 @@ function App() {
             A missão da clínica é promover a saúde bucal e o bem-estar dos pacientes, sempre com um atendimento personalizado e focado nas necessidades individuais. Ao longo dos anos, a clínica se tornou referência na região, conquistando a confiança e satisfação dos pacientes atendidos.
           </h3>
         </animated.div>
-        <img src={dentistWoman} className='sm:hover:scale-95 transition shadow-2xl sm:hover:shadow-none rounded-lg' />
+        <img src={dentistWoman} className='sm:hover:scale-95 transition shadow-2xl sm:hover:shadow-none rounded-lg md:max-h-[400px]' />
       </section>
 
       <section className="flex flex-col my-12 px-8 md:px-24 py-12 justify-center items-center" id='contato'>
