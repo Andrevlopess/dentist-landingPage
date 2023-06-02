@@ -1,7 +1,7 @@
 import Doctor from './assets/doctor.webp'
 import { especialidades } from "./utils/especialidades"
 import EspecCard from "./components/EspecCard"
-import WhyChooseUsImage from './assets/whychooseus.png'
+import WhyChooseUsImage from './assets/whychooseus.webp'
 import person1 from './assets/Dentista/person1.svg'
 import person2 from './assets/Dentista/person2.svg'
 import person3 from './assets/Dentista/person3.svg'
@@ -12,11 +12,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { depoiments } from "./utils/Depoimentos"
 import DepoimentCard from "./components/DepoimentCard"
-import dentistWoman from './assets/dentistWoman.jpg'
+import dentistWoman from './assets/dentistWoman.webp'
 import Form from "./components/Form"
 import { faqs } from "./utils/Faqs"
 import FaqCard from './components/faq'
-import FaqImage from './assets/faqImage.png'
+import FaqImage from './assets/faqImage.webp'
 import { FiMenu } from 'react-icons/fi'
 import { IoMdClose } from 'react-icons/io'
 import { useSpring, animated, useInView } from '@react-spring/web';
@@ -194,6 +194,7 @@ function App() {
       </div>
       <section className="flex flex-col px-8 md:px-24 py-12 gap-6" id='especialidades'>
         <h1 className="text-4xl font-bold text-gray-700">Nossas especialidades</h1>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {especialidades.map((espec) => {
             return (
@@ -201,6 +202,7 @@ function App() {
             )
           })}
         </div>
+
         <div className="flex items-center gap-10 my-12 flex-wrap-reverse">
           <img src={WhyChooseUsImage} className='sm:hover:scale-95 transition shadow-2xl sm:hover:shadow-none rounded-lg' alt="Dentists images" />
 

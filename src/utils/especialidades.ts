@@ -1,9 +1,9 @@
-import cirurgias from '../assets/cirurgias.jpg'
-import implantes from '../assets/implantes.jpg'
-import limpeza from '../assets/limpeza.jpg'
-import clareamento from '../assets/clareamento.jpg'
-import ortodontia from '../assets/ortodontia.jpg'
-import endodontia from '../assets/endodontia.jpg'
+import cirurgias from '../assets/cirurgias.webp'
+import implantes from '../assets/implantes.webp'
+import limpeza from '../assets/limpeza.webp'
+import clareamento from '../assets/clareamento.webp'
+import ortodontia from '../assets/ortodontia.webp'
+import endodontia from '../assets/endodontia.webp'
 
 export interface IEspecialidade {
     title: string;
